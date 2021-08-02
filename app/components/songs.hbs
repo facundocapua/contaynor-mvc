@@ -1,0 +1,30 @@
+<div>
+  <label>
+    <input id="query" class="light" {{on "input" this.search}} />
+  </label>
+
+  {{#if this.query }}
+    {{#if this.loading}}
+      <p class="center">Searching...</p>
+    {{else}}
+      <table class="results">
+        <tbody>
+        {{#each this.songs as |song|}}
+          <tr>
+            <td><img src={{song.artworkUrl100}} /></td>
+            <td>{{song.artistName}}</td>
+            <td>{{song.trackName}}</td>
+            <td>
+              <LinkTo @route='track' @model={{song}} >
+                Details
+              </LinkTo>
+            </td>
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+    {{/if}}
+  {{else}}
+    <p class="center">Please type in a filter...</p>
+  {{/if}}
+</div>
